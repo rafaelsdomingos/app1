@@ -13,7 +13,7 @@ jobs:
         uses: docker/login-action@v3.0.0
         with:
           username: ${{ secrets.DOCKERHUB_USER }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          password: ${{ secrets.DOCKERHUB_PASSWD }}
           
       - name: Criação da Imagem docker
         uses: docker/build-push-action@v5.0.0
