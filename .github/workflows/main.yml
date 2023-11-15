@@ -32,4 +32,4 @@ jobs:
       - name: Pull da imagem do dockerhub
         run: docker pull rafaelsdomingos/app1:latest
       - name: Restart do docker-compose para atualizar o container com a nova imagem
-        run: cd ~ubuntu/docker/app1 && docker-compose restart
+        run: cd ~ubuntu/docker/app1 && docker-compose down && docker-compose up -d
