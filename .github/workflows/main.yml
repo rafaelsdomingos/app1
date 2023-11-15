@@ -1,4 +1,4 @@
-name: CI
+name: CI-CD
 on:
   push:
     branches: ["main"]
@@ -24,3 +24,12 @@ jobs:
           tags: |
             rafaelsdomingos/app1:v${{ github.run_number }}
             rafaelsdomingos/app1:latest
+
+  CD:
+    needs: CI
+    runs-on: self-hosted
+    steps:
+      - name: Pull da imagem do dockerhub
+        run: docker pull rafaelsdomingos/app1:latest
+      - name: Docker run para criar o container a partir da imagem baixada
+        run: docker run -d -p 80:80 --name app1 rafaelsdomingos/app1:latest
