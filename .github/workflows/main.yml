@@ -31,5 +31,5 @@ jobs:
     steps:
       - name: Pull da imagem do dockerhub
         run: docker pull rafaelsdomingos/app1:latest
-      - name: Docker run para criar o container a partir da imagem baixada
-        run: docker run -d -p 80:80 --name app1 rafaelsdomingos/app1:latest
+      - name: Restart do docker-compose para atualizar o container com a nova imagem
+        run: cd ~ubuntu/docker/app1 && docker-compose restart
