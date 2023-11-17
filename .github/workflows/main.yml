@@ -1,7 +1,7 @@
 name: CI-CD
 on:
   push:
-    branches: ["main"]
+    tags: [ 'v*.*.*' ]
 jobs:
   CI:
     runs-on: ubuntu-latest
@@ -22,7 +22,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            rafaelsdomingos/app1:v${{ github.run_number }}
+            rafaelsdomingos/app1:v${{ github.ref_name }}
             rafaelsdomingos/app1:latest
 
   CD:
