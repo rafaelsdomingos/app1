@@ -3,7 +3,7 @@ on:
   push:
     branches: ["main"]
 jobs:
-  CI:
+  BUILD:
     runs-on: ubuntu-latest
     steps: 
       
@@ -25,11 +25,11 @@ jobs:
             rafaelsdomingos/app1:${{ github.ref_name }}
             rafaelsdomingos/app1:latest
 
-  CD:
-    needs: CI
-    runs-on: self-hosted
+  DEPLOY:
+    needs: BUILD
+    runs-on: ec2-runner1
     steps:
       - name: Pull da imagem do dockerhub
         run: docker pull rafaelsdomingos/app1:latest
       - name: Restart do docker-compose para atualizar o container com a nova imagem
-        run: cd ~ubuntu/docker/app1 && docker-compose down && docker-compose up -d
+        run: cd ~ubuntu/docker/app1 && docker compose down && docker compose up -d
